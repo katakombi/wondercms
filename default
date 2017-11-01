@@ -1,0 +1,41 @@
+server {
+    listen       8080;
+    server_name  dolmades.org;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    root   /var/www/html;
+    index  index.php index.html index.htm;
+
+    location ~ database.js {
+        return 403;
+    }
+
+    autoindex off;
+
+
+    location / {
+        if (!-e $request_filename) {
+            rewrite_log on;
+            rewrite ^/(.+)$ /index.php?page=$1 last;
+        }
+    }
+
+    # pass the PHP scripts to FastCGI server listening on socket /run/php/php7.0-fpm.sock
+    #
+    location ~ \.php$ {
+        #fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass   unix:/var/run/php/php7.0-fpm.sock;
+        #fastcgi_index  index.php;
+        include        snippets/fastcgi-php.conf;
+    }
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    location ~ /\.ht {
+        deny  all;
+    }
+}
+
