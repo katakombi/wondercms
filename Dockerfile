@@ -11,12 +11,12 @@ RUN set -x \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY wondercms/cfg/default /etc/nginx/sites-enabled/default
-COPY wondercms/cfg/nginx.conf /etc/nginx/nginx.conf
-COPY wondercms/cfg/fastcgi.conf /etc/nginx/fastcgi.conf
-COPY wondercms/cfg/php.ini /etc/php/7.0/fpm/php.ini
-COPY wondercms/cfg/php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
-COPY wondercms/cfg/www.conf /etc/php/7.0/fpm/pool.d/www.conf
+COPY cfg/default /etc/nginx/sites-enabled/default
+COPY cfg/nginx.conf /etc/nginx/nginx.conf
+COPY cfg/fastcgi.conf /etc/nginx/fastcgi.conf
+COPY cfg/php.ini /etc/php/7.0/fpm/php.ini
+COPY cfg/php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
+COPY cfg/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 
 EXPOSE 8080
 
