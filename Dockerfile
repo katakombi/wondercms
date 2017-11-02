@@ -4,7 +4,7 @@ LABEL maintainer="Stefan Kombrink <stefan.kombrink@gmail.com>"
 
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -y vim php-fpm php7.0-fpm php-mbstring php-zip php-curl nginx \
+	&& apt-get install -y vim php-fpm php7.0-fpm php-mbstring php-zip php-curl nginx certbot python-certbot-nginx \
 	&& apt-get clean 
 
 # forward request and error logs to docker log collector
